@@ -1,0 +1,28 @@
+Django==4.2.7
+  # Framework web Python (o coração do backend)
+  # ==4.2.7 significa: instale EXATAMENTE essa versão
+
+djangorestframework==3.14.0
+  # Permite criar APIs REST facilmente
+  # Transforma seus modelos em JSON automaticamente
+
+django-cors-headers==4.3.1
+  # Permite que o frontend em http://localhost:3000 
+    chame o backend em http://localhost:8000
+  # Sem isso, navegador bloqueia por segurança
+
+psycopg2-binary==2.9.9
+  # Driver que permite Django se conectar ao PostgreSQL
+  # Sem isso, Django não consegue falar com o banco
+
+python-decouple==3.8
+  # Lê variáveis do arquivo .env
+  # Assim não precisa colocar senhas no código
+
+gunicorn==21.2.0
+  # Servidor web que roda Django em produção
+  # Mais robusto que o servidor de desenvolvimento do Django
+
+Pillow==10.1.0
+  # Biblioteca para processar imagens
+  # Útil para upload de fotos de usuário
