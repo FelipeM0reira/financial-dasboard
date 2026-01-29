@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: budget-tracker-api
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn core.wsgi:application --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: budget-tracker-db
+          property: connectionString
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+
+databases:
+  - name: budget-tracker-db
+    databaseName: budget_tracker
+    user: budget_user
+    plan: free
+    region: oregon
