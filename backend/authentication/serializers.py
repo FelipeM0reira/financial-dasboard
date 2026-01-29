@@ -122,3 +122,11 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
                 'new_password_confirm': 'As senhas não coincidem.'
             })
         return attrs
+
+
+class UserSerializer(serializers.ModelSerializer):
+    """Serializer for user data retrieval"""
+    class Meta:
+        model = User
+        fields = ('id', 'email', 'first_name', 'last_name')
+        read_only_fields = ('id', 'email')

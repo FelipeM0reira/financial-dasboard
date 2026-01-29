@@ -1,6 +1,6 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth import get_user_model
@@ -13,7 +13,8 @@ from .serializers import (
     RegisterSerializer, 
     CustomTokenObtainPairSerializer,
     PasswordResetRequestSerializer,
-    PasswordResetConfirmSerializer
+    PasswordResetConfirmSerializer,
+    UserSerializer
 )
 
 User = get_user_model()
@@ -110,3 +111,12 @@ class PasswordResetConfirmView(APIView):
         return Response({
             'message': 'Senha redefinida com sucesso!'
         }, status=status.HTTP_200_OK)
+
+
+class CurrentUserView(generics.RetrieveAPIView):
+    """Get current authenticated user information"""
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserSerializer
+    
+    def get_object(self):
+        return self.request.user

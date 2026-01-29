@@ -1,7 +1,17 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 import api from '../services/api'
 
 const TransactionContext = createContext(null)
+
+// Normalize transaction data from backend to frontend format
+function normalizeTransaction(transaction) {
+  return {
+    ...transaction,
+    type: transaction.transaction_type === 'receita' ? 'income' : 'expense',
+    type_display: transaction.type_display || (transaction.transaction_type === 'receita' ? 'Receita' : 'Despesa'),
+    category_display: transaction.category_display || transaction.category,
+  }
+}
 
 export function TransactionProvider({ children }) {
   const [transactions, setTransactions] = useState([])
@@ -13,6 +23,14 @@ export function TransactionProvider({ children }) {
     type: '',
   })
   const [report, setReport] = useState(null)
+
+  // Load transactions when component mounts if user is authenticated
+  useEffect(() => {
+    const token = localStorage.getItem('access_token')
+    if (token) {
+      fetchTransactions()
+    }
+  }, [])
 
   const fetchTransactions = async (filterParams) => {
     setLoading(true)
@@ -26,7 +44,11 @@ export function TransactionProvider({ children }) {
       if (params.type) queryParams.append('type', params.type)
       
       const response = await api.get(`/transactions/?${queryParams.toString()}`)
-      setTransactions(response.data.results || response.data)
+      const transactions = response.data.results || response.data
+      const normalized = Array.isArray(transactions) 
+        ? transactions.map(normalizeTransaction)
+        : transactions
+      setTransactions(normalized)
       return { success: true, data: response.data }
     } catch (err) {
       const errorMessage = err.response?.data?.detail || 
@@ -42,9 +64,17 @@ export function TransactionProvider({ children }) {
     setLoading(true)
     setError(null)
     try {
-      const response = await api.post('/transactions/', data)
-      setTransactions((prev) => [response.data, ...prev])
-      return { success: true, data: response.data }
+      // Convert frontend format to backend format
+      const backendData = {
+        ...data,
+        transaction_type: data.type === 'income' ? 'receita' : 'despesa'
+      }
+      delete backendData.type
+      
+      const response = await api.post('/transactions/', backendData)
+      const normalized = normalizeTransaction(response.data)
+      setTransactions((prev) => [normalized, ...prev])
+      return { success: true, data: normalized }
     } catch (err) {
       const errorMessage = err.response?.data?.amount?.[0] || 
                           err.response?.data?.category?.[0] || 
@@ -61,13 +91,21 @@ export function TransactionProvider({ children }) {
     setLoading(true)
     setError(null)
     try {
-      const response = await api.put(`/transactions/${id}/`, data)
+      // Convert frontend format to backend format
+      const backendData = {
+        ...data,
+        transaction_type: data.type === 'income' ? 'receita' : 'despesa'
+      }
+      delete backendData.type
+      
+      const response = await api.put(`/transactions/${id}/`, backendData)
+      const normalized = normalizeTransaction(response.data)
       setTransactions((prev) =>
         prev.map((transaction) =>
-          transaction.id === id ? response.data : transaction
+          transaction.id === id ? normalized : transaction
         )
       )
-      return { success: true, data: response.data }
+      return { success: true, data: normalized }
     } catch (err) {
       const errorMessage = err.response?.data?.amount?.[0] || 
                           err.response?.data?.category?.[0] || 
