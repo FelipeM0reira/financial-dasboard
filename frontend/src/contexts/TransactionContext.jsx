@@ -7,7 +7,9 @@ const TransactionContext = createContext(null)
 function normalizeTransaction(transaction) {
   return {
     ...transaction,
+    // Keep both format for compatibility
     type: transaction.transaction_type === 'receita' ? 'income' : 'expense',
+    transaction_type: transaction.transaction_type, // Keep original for form editing
     type_display: transaction.type_display || (transaction.transaction_type === 'receita' ? 'Receita' : 'Despesa'),
     category_display: transaction.category_display || transaction.category,
   }
@@ -64,12 +66,12 @@ export function TransactionProvider({ children }) {
     setLoading(true)
     setError(null)
     try {
-      // Convert frontend format to backend format
+      // Backend expects transaction_type, frontend form sends transaction_type
+      // Just ensure it's in the correct backend format
       const backendData = {
         ...data,
-        transaction_type: data.type === 'income' ? 'receita' : 'despesa'
+        transaction_type: data.transaction_type || (data.type === 'income' ? 'receita' : 'despesa')
       }
-      delete backendData.type
       
       const response = await api.post('/transactions/', backendData)
       const normalized = normalizeTransaction(response.data)
@@ -91,12 +93,12 @@ export function TransactionProvider({ children }) {
     setLoading(true)
     setError(null)
     try {
-      // Convert frontend format to backend format
+      // Backend expects transaction_type, frontend form sends transaction_type
+      // Just ensure it's in the correct backend format
       const backendData = {
         ...data,
-        transaction_type: data.type === 'income' ? 'receita' : 'despesa'
+        transaction_type: data.transaction_type || (data.type === 'income' ? 'receita' : 'despesa')
       }
-      delete backendData.type
       
       const response = await api.put(`/transactions/${id}/`, backendData)
       const normalized = normalizeTransaction(response.data)
