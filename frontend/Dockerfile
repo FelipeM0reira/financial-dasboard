@@ -1,8 +1,10 @@
-FROM node:18-alpine AS build
+FROM node:18-alpine AS builder
+ARG VITE_API_URL
+ENV VITE_API_URL=${VITE_API_URL}
 
 WORKDIR /app
 
-COPY packge*.json ./
+COPY package*.json ./
 
 RUN npm install
 
@@ -15,7 +17,7 @@ FROM nginx:alpine
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 
