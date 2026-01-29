@@ -11,7 +11,7 @@ export default function Register() {
     first_name: '',
     last_name: '',
     password: '',
-    password_confirm: '',
+    password_confirm: ''
   })
   const [errors, setErrors] = useState({})
   const [passwordStrength, setPasswordStrength] = useState({
@@ -21,20 +21,20 @@ export default function Register() {
       uppercase: false,
       lowercase: false,
       number: false,
-      special: false,
-    },
+      special: false
+    }
   })
 
-  const validatePassword = (password) => {
+  const validatePassword = password => {
     const checks = {
       length: password.length >= 8,
       uppercase: /[A-Z]/.test(password),
       lowercase: /[a-z]/.test(password),
       number: /\d/.test(password),
-      special: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+      special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
     }
 
-    const isValid = Object.values(checks).every((check) => check)
+    const isValid = Object.values(checks).every(check => check)
 
     setPasswordStrength({ isValid, checks })
     return isValid
@@ -53,10 +53,6 @@ export default function Register() {
       newErrors.first_name = 'First name is required'
     }
 
-    if (!formData.last_name) {
-      newErrors.last_name = 'Last name is required'
-    }
-
     if (!formData.password) {
       newErrors.password = 'Password is required'
     } else if (!passwordStrength.isValid) {
@@ -73,11 +69,11 @@ export default function Register() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
-      [name]: value,
+      [name]: value
     }))
 
     // Validate password strength on password change
@@ -87,14 +83,14 @@ export default function Register() {
 
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors((prev) => ({
+      setErrors(prev => ({
         ...prev,
-        [name]: '',
+        [name]: ''
       }))
     }
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault()
 
     if (!validateForm()) {
@@ -109,6 +105,7 @@ export default function Register() {
         first_name: formData.first_name,
         last_name: formData.last_name,
         password: formData.password,
+        password_confirm: formData.password_confirm
       })
 
       toast.success('Account created successfully! Please log in.')
@@ -135,7 +132,7 @@ export default function Register() {
     }
   }
 
-  const getStrengthColor = (isValid) => {
+  const getStrengthColor = isValid => {
     return isValid ? 'text-green-600' : 'text-gray-400'
   }
 
@@ -159,8 +156,12 @@ export default function Register() {
               />
             </svg>
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">Create your account</h2>
-          <p className="mt-2 text-gray-600">Start tracking your finances today</p>
+          <h2 className="text-3xl font-bold text-gray-900">
+            Create your account
+          </h2>
+          <p className="mt-2 text-gray-600">
+            Start tracking your finances today
+          </p>
         </div>
 
         {/* Form Card */}
@@ -168,7 +169,10 @@ export default function Register() {
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Email address
               </label>
               <input
@@ -191,7 +195,10 @@ export default function Register() {
             {/* Name Fields */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor="first_name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="first_name"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   First name
                 </label>
                 <input
@@ -207,12 +214,17 @@ export default function Register() {
                   placeholder="John"
                 />
                 {errors.first_name && (
-                  <p className="mt-1 text-sm text-red-600">{errors.first_name}</p>
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.first_name}
+                  </p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="last_name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="last_name"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Last name
                 </label>
                 <input
@@ -228,14 +240,19 @@ export default function Register() {
                   placeholder="Doe"
                 />
                 {errors.last_name && (
-                  <p className="mt-1 text-sm text-red-600">{errors.last_name}</p>
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.last_name}
+                  </p>
                 )}
               </div>
             </div>
 
             {/* Password Field */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Password
               </label>
               <input
@@ -257,12 +274,18 @@ export default function Register() {
               {/* Password Strength Indicator */}
               {formData.password && (
                 <div className="mt-3 space-y-2">
-                  <p className="text-xs font-medium text-gray-700">Password must contain:</p>
+                  <p className="text-xs font-medium text-gray-700">
+                    Password must contain:
+                  </p>
                   <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className={`flex items-center ${getStrengthColor(passwordStrength.checks.length)}`}>
+                    <div
+                      className={`flex items-center ${getStrengthColor(passwordStrength.checks.length)}`}
+                    >
                       <svg
                         className={`w-4 h-4 mr-1 ${
-                          passwordStrength.checks.length ? 'text-green-600' : 'text-gray-400'
+                          passwordStrength.checks.length
+                            ? 'text-green-600'
+                            : 'text-gray-400'
                         }`}
                         fill="currentColor"
                         viewBox="0 0 20 20"
@@ -275,10 +298,14 @@ export default function Register() {
                       </svg>
                       8+ characters
                     </div>
-                    <div className={`flex items-center ${getStrengthColor(passwordStrength.checks.uppercase)}`}>
+                    <div
+                      className={`flex items-center ${getStrengthColor(passwordStrength.checks.uppercase)}`}
+                    >
                       <svg
                         className={`w-4 h-4 mr-1 ${
-                          passwordStrength.checks.uppercase ? 'text-green-600' : 'text-gray-400'
+                          passwordStrength.checks.uppercase
+                            ? 'text-green-600'
+                            : 'text-gray-400'
                         }`}
                         fill="currentColor"
                         viewBox="0 0 20 20"
@@ -291,10 +318,14 @@ export default function Register() {
                       </svg>
                       Uppercase
                     </div>
-                    <div className={`flex items-center ${getStrengthColor(passwordStrength.checks.lowercase)}`}>
+                    <div
+                      className={`flex items-center ${getStrengthColor(passwordStrength.checks.lowercase)}`}
+                    >
                       <svg
                         className={`w-4 h-4 mr-1 ${
-                          passwordStrength.checks.lowercase ? 'text-green-600' : 'text-gray-400'
+                          passwordStrength.checks.lowercase
+                            ? 'text-green-600'
+                            : 'text-gray-400'
                         }`}
                         fill="currentColor"
                         viewBox="0 0 20 20"
@@ -307,10 +338,14 @@ export default function Register() {
                       </svg>
                       Lowercase
                     </div>
-                    <div className={`flex items-center ${getStrengthColor(passwordStrength.checks.number)}`}>
+                    <div
+                      className={`flex items-center ${getStrengthColor(passwordStrength.checks.number)}`}
+                    >
                       <svg
                         className={`w-4 h-4 mr-1 ${
-                          passwordStrength.checks.number ? 'text-green-600' : 'text-gray-400'
+                          passwordStrength.checks.number
+                            ? 'text-green-600'
+                            : 'text-gray-400'
                         }`}
                         fill="currentColor"
                         viewBox="0 0 20 20"
@@ -323,10 +358,14 @@ export default function Register() {
                       </svg>
                       Number
                     </div>
-                    <div className={`flex items-center ${getStrengthColor(passwordStrength.checks.special)} col-span-2`}>
+                    <div
+                      className={`flex items-center ${getStrengthColor(passwordStrength.checks.special)} col-span-2`}
+                    >
                       <svg
                         className={`w-4 h-4 mr-1 ${
-                          passwordStrength.checks.special ? 'text-green-600' : 'text-gray-400'
+                          passwordStrength.checks.special
+                            ? 'text-green-600'
+                            : 'text-gray-400'
                         }`}
                         fill="currentColor"
                         viewBox="0 0 20 20"
@@ -346,7 +385,10 @@ export default function Register() {
 
             {/* Confirm Password Field */}
             <div>
-              <label htmlFor="password_confirm" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="password_confirm"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Confirm password
               </label>
               <input
@@ -362,7 +404,9 @@ export default function Register() {
                 placeholder="Confirm your password"
               />
               {errors.password_confirm && (
-                <p className="mt-1 text-sm text-red-600">{errors.password_confirm}</p>
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.password_confirm}
+                </p>
               )}
             </div>
 

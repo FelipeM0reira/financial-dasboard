@@ -1,15 +1,25 @@
-# Budget Tracker - Gestao Financeira Pessoal
+# 📊 Budget Tracker - Gestão Financeira Pessoal
 
-Uma aplicacao fullstack de gestao financeira pessoal desenvolvida com metodologia TDD, demonstrando habilidades profissionais em React + Django.
+Uma aplicação fullstack de gestão financeira pessoal desenvolvida com metodologia TDD, demonstrando habilidades profissionais em React + Django.
 
-## Screenshots
+> 📚 **Documentação completa disponível em:**
+>
+> - [📖 Estrutura Completa](./DOCUMENTACAO_ESTRUTURA.md)
+> - [⚡ Guia Rápido](./GUIA_RAPIDO.md)
+> - [🔧 Backend](./backend/README.md)
+> - [⚛️ Frontend](./frontend/README.md)
+> - [🏗️ Arquitetura](./ARQUITETURA.md)
+> - [✅ Checklist](./CHECKLIST_DESENVOLVIMENTO.md)
+
+## 🎨 Screenshots
 
 ![Dashboard](https://via.placeholder.com/800x400/3b82f6/ffffff?text=Dashboard+Preview)
 ![Transactions](https://via.placeholder.com/800x400/22c55e/ffffff?text=Transactions+Preview)
 
-## Tecnologias
+## 💻 Tecnologias
 
 ### Backend
+
 - **Django 4.2** - Framework web Python
 - **Django REST Framework** - API REST
 - **SimpleJWT** - Autenticacao JWT
@@ -17,6 +27,7 @@ Uma aplicacao fullstack de gestao financeira pessoal desenvolvida com metodologi
 - **pytest** - Testes automatizados (65 testes)
 
 ### Frontend
+
 - **React 18** - Biblioteca UI
 - **Vite** - Build tool
 - **Tailwind CSS** - Estilizacao
@@ -25,6 +36,7 @@ Uma aplicacao fullstack de gestao financeira pessoal desenvolvida com metodologi
 - **React Router** - Roteamento
 
 ### DevOps
+
 - **Docker Compose** - Desenvolvimento local
 - **Render** - Deploy backend
 - **Vercel** - Deploy frontend
@@ -33,12 +45,14 @@ Uma aplicacao fullstack de gestao financeira pessoal desenvolvida com metodologi
 ## Funcionalidades
 
 ### Autenticacao Segura
+
 - Registro com validacao de senha forte
 - Login com JWT (Access + Refresh tokens)
 - Recuperacao de senha via email
 - Protecao de rotas
 
 ### Gestao de Transacoes
+
 - CRUD completo (Criar, Listar, Editar, Deletar)
 - Categorias: Alimentacao, Transporte, Moradia, Saude, Lazer, Educacao, Salario, Investimentos, Outros
 - Tipos: Receita e Despesa
@@ -46,76 +60,109 @@ Uma aplicacao fullstack de gestao financeira pessoal desenvolvida com metodologi
 - Paginacao
 
 ### Relatorios e Analises
+
 - Dashboard com resumo mensal
 - Graficos de despesas por categoria
 - Calculo de saldo (receitas - despesas)
 - Export para CSV
 
-## Estrutura do Projeto
+## 📁 Estrutura do Projeto
 
-```
+Para documentação detalhada, veja [DOCUMENTACAO_ESTRUTURA.md](./DOCUMENTACAO_ESTRUTURA.md).
+
+````
 financial_dashboard/
-├── backend/
-│   ├── core/                 # Configuracoes Django
-│   │   ├── settings.py
-│   │   ├── urls.py
-│   │   └── wsgi.py
-│   ├── authentication/       # App de autenticacao
-│   │   ├── models.py         # CustomUser
-│   │   ├── serializers.py    # Register, Login, PasswordReset
-│   │   ├── views.py
-│   │   └── tests/            # 28 testes
-│   ├── transactions/         # App de transacoes
-│   │   ├── models.py         # Transaction
-│   │   ├── serializers.py
-│   │   ├── views.py          # CRUD + Report + Export
-│   │   ├── filters.py
-│   │   └── tests/            # 37 testes
+├── backend/                          # Django REST API
+│   ├── core/                         # Configurações
+│   │   ├── settings.py              # Django settings
+│   │   ├── urls.py                  # URLs principais
+│   │   └── wsgi.py                  # WSGI app
+│   ├── authentication/              # App de autenticação
+│   │   ├── migrations/              # Migrações do BD
+│   │   ├── tests/                   # 28 testes
+│   │   ├── models.py                # CustomUser model
+│   │   ├── serializers.py           # Validação
+│   │   ├── views.py                 # Endpoints
+│   │   └── urls.py                  # Rotas
+│   ├── transactions/                # App de transações
+│   │   ├── migrations/              # Migrações do BD
+│   │   ├── tests/                   # 37 testes
+│   │   ├── models.py                # Transaction model
+│   │   ├── serializers.py           # Validação
+│   │   ├── views.py                 # CRUD endpoints
+│   │   ├── filters.py               # Filtros customizados
+│   │   └── urls.py                  # Rotas
 │   ├── Dockerfile
 │   ├── requirements.txt
-│   └── manage.py
-├── frontend/
+│   ├── entrypoint.sh               # Script inicialização
+│   └── README.md                    # Docs do backend
+│
+├── frontend/                        # React + Vite
 │   ├── src/
-│   │   ├── components/
-│   │   │   ├── common/       # Button, Modal
-│   │   │   ├── layout/       # Header
-│   │   │   └── transactions/ # Form, Filters, Charts
-│   │   ├── contexts/         # AuthContext, TransactionContext
-│   │   ├── pages/            # Login, Register, Dashboard, Transactions
-│   │   └── services/         # API client
-│   ├── Dockerfile
-│   └── package.json
-├── docker-compose.yml
-├── .env.example
-└── README.md
-```
+│   │   ├── components/              # Componentes reutilizáveis
+│   │   │   ├── common/             # Button, Input, Card, Modal
+│   │   │   ├── layout/             # Header, Sidebar, Footer
+│   │   │   └── transactions/       # TransactionForm, List, Filter
+│   │   ├── contexts/               # Estado global
+│   │   │   ├── AuthContext.jsx     # Autenticação
+│  🚀 Como Começar
 
-## Como Rodar Localmente
+### Pré-requisitos
 
-### Pre-requisitos
-- Docker e Docker Compose
-- Git
+- ✅ Docker & Docker Compose
+- ✅ Git
 
-### Passo a Passo
+**Para desenvolvimento sem Docker (opcional):**
+- Python 3.11+
+- Node.js 18+
 
-1. **Clone o repositorio**
+### Setup Rápido
+
 ```bash
-git clone https://github.com/seu-usuario/budget-tracker.git
-cd budget-tracker
+# 1. Clone o repositório
+git clone https://github.com/seu-usuario/financial_dashboard.git
+cd financial_dashboard
+
+# 2. Configure variáveis de ambiente
+cp .env.example .env
+
+# 3. Inicie os containers
+docker-compose up --build
+
+# 4. Acesse a aplicação
+# Frontend: http://localhost:5173
+# Backend:  http://localhost:8000/api
+# Admin:    http://localhost:8000/admin
+````
+
+📖 **Para guia mais detalhado, veja [GUIA_RAPIDO.md](./GUIA_RAPIDO.md)**
+
+### Rodar Testes
+
+```bash
+# Com Docker (recomendado)
+docker-compose exec backend pytest -v
+
+# Sem Docker (requer setup local)
+cd backend && python -m venv venv
+source venv/bin/activate
 ```
 
 2. **Configure as variaveis de ambiente**
+
 ```bash
 cp .env.example .env
 # Edite o arquivo .env se necessario
 ```
 
 3. **Suba os containers**
+
 ```bash
 docker-compose up --build
 ```
 
 4. **Acesse a aplicacao**
+
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:8000/api
 - Admin Django: http://localhost:8000/admin
@@ -137,26 +184,29 @@ pytest -v
 ## API Endpoints
 
 ### Autenticacao
-| Metodo | Endpoint | Descricao |
-|--------|----------|-----------|
-| POST | `/api/auth/register/` | Registrar usuario |
-| POST | `/api/auth/login/` | Login (retorna tokens) |
-| POST | `/api/auth/token/refresh/` | Renovar access token |
-| POST | `/api/auth/password-reset/` | Solicitar reset de senha |
-| POST | `/api/auth/password-reset/confirm/` | Confirmar nova senha |
+
+| Metodo | Endpoint                            | Descricao                |
+| ------ | ----------------------------------- | ------------------------ |
+| POST   | `/api/auth/register/`               | Registrar usuario        |
+| POST   | `/api/auth/login/`                  | Login (retorna tokens)   |
+| POST   | `/api/auth/token/refresh/`          | Renovar access token     |
+| POST   | `/api/auth/password-reset/`         | Solicitar reset de senha |
+| POST   | `/api/auth/password-reset/confirm/` | Confirmar nova senha     |
 
 ### Transacoes
-| Metodo | Endpoint | Descricao |
-|--------|----------|-----------|
-| GET | `/api/transactions/` | Listar transacoes |
-| POST | `/api/transactions/` | Criar transacao |
-| GET | `/api/transactions/{id}/` | Detalhe da transacao |
-| PUT | `/api/transactions/{id}/` | Atualizar transacao |
-| DELETE | `/api/transactions/{id}/` | Deletar transacao |
-| GET | `/api/transactions/report/` | Relatorio mensal |
-| GET | `/api/transactions/export/` | Exportar CSV |
+
+| Metodo | Endpoint                    | Descricao            |
+| ------ | --------------------------- | -------------------- |
+| GET    | `/api/transactions/`        | Listar transacoes    |
+| POST   | `/api/transactions/`        | Criar transacao      |
+| GET    | `/api/transactions/{id}/`   | Detalhe da transacao |
+| PUT    | `/api/transactions/{id}/`   | Atualizar transacao  |
+| DELETE | `/api/transactions/{id}/`   | Deletar transacao    |
+| GET    | `/api/transactions/report/` | Relatorio mensal     |
+| GET    | `/api/transactions/export/` | Exportar CSV         |
 
 ### Filtros Disponiveis
+
 - `?month=2024-01` - Filtrar por mes
 - `?category=alimentacao` - Filtrar por categoria
 - `?transaction_type=despesa` - Filtrar por tipo
