@@ -61,12 +61,3 @@ coverage.xml
 .env.development.local
 .env.test.local
 .env.production.local
-
-# Generated Documentation (keep README.md)
-ARQUITETURA.md
-CHECKLIST_DESENVOLVIMENTO.md
-DOCUMENTACAO_ESTRUTURA.md
-GUIA_RAPIDO.md
-INDICE_DOCUMENTACAO.md
-MAPA_DOCUMENTACAO.md
-RESUMO_ORGANIZACAO.md

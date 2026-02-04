@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useTransactions } from '../contexts/TransactionContext'
 import SummaryCards from '../components/transactions/SummaryCards'
 import CategoryChart from '../components/transactions/CategoryChart'
+import MonthlyTrend from '../components/transactions/MonthlyTrend'
 
 export default function Dashboard() {
   const { transactions } = useTransactions()
@@ -54,20 +55,23 @@ export default function Dashboard() {
     for (let i = 0; i < 12; i++) {
       const date = new Date(today.getFullYear(), today.getMonth() - i, 1)
       const value = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`
-      const label = date.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })
+      const label = date.toLocaleDateString('pt-BR', {
+        month: 'long',
+        year: 'numeric'
+      })
       options.push({ value, label })
     }
     return options
   }, [])
 
-  const formatCurrency = (value) => {
+  const formatCurrency = value => {
     return new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL'
     }).format(value)
   }
 
-  const formatDate = (dateString) => {
+  const formatDate = dateString => {
     return new Date(dateString).toLocaleDateString('pt-BR')
   }
 
@@ -109,13 +113,15 @@ export default function Dashboard() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-            <p className="text-gray-600 mt-1">Overview of your financial activity</p>
+            <p className="text-gray-600 mt-1">
+              Overview of your financial activity
+            </p>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-3 mt-4 md:mt-0">
             <select
               value={selectedMonth}
-              onChange={(e) => setSelectedMonth(e.target.value)}
+              onChange={e => setSelectedMonth(e.target.value)}
               className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
             >
               <option value="">All Months</option>
@@ -125,22 +131,22 @@ export default function Dashboard() {
                 </option>
               ))}
             </select>
-            
+
             <button
               onClick={exportToCSV}
               className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-medium transition flex items-center justify-center space-x-2"
             >
-              <svg 
-                className="w-5 h-5" 
-                fill="none" 
-                stroke="currentColor" 
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 />
               </svg>
               <span>Export CSV</span>
@@ -149,7 +155,7 @@ export default function Dashboard() {
         </div>
 
         {/* Summary Cards */}
-        <SummaryCards 
+        <SummaryCards
           totalIncome={totalIncome}
           totalExpenses={totalExpenses}
           balance={balance}
@@ -158,35 +164,15 @@ export default function Dashboard() {
         {/* Charts Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <CategoryChart transactions={filteredTransactions} />
-          
-          {/* Placeholder for additional chart */}
-          <div className="bg-white rounded-xl shadow-md p-6">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">Monthly Trend</h2>
-            <div className="flex items-center justify-center h-64 text-gray-400">
-              <div className="text-center">
-                <svg 
-                  className="w-16 h-16 mx-auto mb-4" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" 
-                  />
-                </svg>
-                <p className="text-sm">Chart coming soon</p>
-              </div>
-            </div>
-          </div>
+          <MonthlyTrend transactions={transactions} />
         </div>
 
         {/* Recent Transactions */}
         <div className="bg-white rounded-xl shadow-md overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-            <h2 className="text-lg font-semibold text-gray-800">Recent Transactions</h2>
+            <h2 className="text-lg font-semibold text-gray-800">
+              Recent Transactions
+            </h2>
             <button
               onClick={() => navigate('/transactions')}
               className="text-indigo-600 hover:text-indigo-700 text-sm font-medium"
@@ -194,20 +180,20 @@ export default function Dashboard() {
               View All
             </button>
           </div>
-          
+
           {recentTransactions.length === 0 ? (
             <div className="px-6 py-12 text-center text-gray-400">
-              <svg 
-                className="w-16 h-16 mx-auto mb-4" 
-                fill="none" 
-                stroke="currentColor" 
+              <svg
+                className="w-16 h-16 mx-auto mb-4"
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 />
               </svg>
               <p>No transactions found</p>
@@ -215,35 +201,68 @@ export default function Dashboard() {
           ) : (
             <div className="divide-y divide-gray-200">
               {recentTransactions.map((transaction, index) => (
-                <div key={index} className="px-6 py-4 hover:bg-gray-50 transition">
+                <div
+                  key={index}
+                  className="px-6 py-4 hover:bg-gray-50 transition"
+                >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
-                      <div className={`p-2 rounded-full ${
-                        transaction.type === 'income' 
-                          ? 'bg-green-100 text-green-600' 
-                          : 'bg-red-100 text-red-600'
-                      }`}>
+                      <div
+                        className={`p-2 rounded-full ${
+                          transaction.type === 'income'
+                            ? 'bg-green-100 text-green-600'
+                            : 'bg-red-100 text-red-600'
+                        }`}
+                      >
                         {transaction.type === 'income' ? (
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M7 11l5-5m0 0l5 5m-5-5v12"
+                            />
                           </svg>
                         ) : (
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 13l-5 5m0 0l-5-5m5 5V6" />
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17 13l-5 5m0 0l-5-5m5 5V6"
+                            />
                           </svg>
                         )}
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">{transaction.description}</p>
+                        <p className="font-medium text-gray-900">
+                          {transaction.description}
+                        </p>
                         <p className="text-sm text-gray-500">
-                          {transaction.category || 'Other'} • {formatDate(transaction.date)}
+                          {transaction.category || 'Other'} •{' '}
+                          {formatDate(transaction.date)}
                         </p>
                       </div>
                     </div>
-                    <div className={`font-semibold ${
-                      transaction.type === 'income' ? 'text-green-600' : 'text-red-600'
-                    }`}>
-                      {transaction.type === 'income' ? '+' : '-'}{formatCurrency(parseFloat(transaction.amount))}
+                    <div
+                      className={`font-semibold ${
+                        transaction.type === 'income'
+                          ? 'text-green-600'
+                          : 'text-red-600'
+                      }`}
+                    >
+                      {transaction.type === 'income' ? '+' : '-'}
+                      {formatCurrency(parseFloat(transaction.amount))}
                     </div>
                   </div>
                 </div>

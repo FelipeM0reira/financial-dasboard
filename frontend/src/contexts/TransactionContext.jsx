@@ -10,8 +10,10 @@ function normalizeTransaction(transaction) {
     // Keep both format for compatibility
     type: transaction.transaction_type === 'receita' ? 'income' : 'expense',
     transaction_type: transaction.transaction_type, // Keep original for form editing
-    type_display: transaction.type_display || (transaction.transaction_type === 'receita' ? 'Receita' : 'Despesa'),
-    category_display: transaction.category_display || transaction.category,
+    type_display:
+      transaction.type_display ||
+      (transaction.transaction_type === 'receita' ? 'Receita' : 'Despesa'),
+    category_display: transaction.category_display || transaction.category
   }
 }
 
@@ -22,7 +24,7 @@ export function TransactionProvider({ children }) {
   const [filters, setFilters] = useState({
     month: '',
     category: '',
-    type: '',
+    type: ''
   })
   const [report, setReport] = useState(null)
 
@@ -34,27 +36,27 @@ export function TransactionProvider({ children }) {
     }
   }, [])
 
-  const fetchTransactions = async (filterParams) => {
+  const fetchTransactions = async filterParams => {
     setLoading(true)
     setError(null)
     try {
       const params = filterParams || filters
       const queryParams = new URLSearchParams()
-      
+
       if (params.month) queryParams.append('month', params.month)
       if (params.category) queryParams.append('category', params.category)
       if (params.type) queryParams.append('type', params.type)
-      
+
       const response = await api.get(`/transactions/?${queryParams.toString()}`)
       const transactions = response.data.results || response.data
-      const normalized = Array.isArray(transactions) 
+      const normalized = Array.isArray(transactions)
         ? transactions.map(normalizeTransaction)
         : transactions
       setTransactions(normalized)
       return { success: true, data: response.data }
     } catch (err) {
-      const errorMessage = err.response?.data?.detail || 
-                          'Failed to fetch transactions.'
+      const errorMessage =
+        err.response?.data?.detail || 'Failed to fetch transactions.'
       setError(errorMessage)
       return { success: false, error: errorMessage }
     } finally {
@@ -62,7 +64,7 @@ export function TransactionProvider({ children }) {
     }
   }
 
-  const createTransaction = async (data) => {
+  const createTransaction = async data => {
     setLoading(true)
     setError(null)
     try {
@@ -70,18 +72,21 @@ export function TransactionProvider({ children }) {
       // Just ensure it's in the correct backend format
       const backendData = {
         ...data,
-        transaction_type: data.transaction_type || (data.type === 'income' ? 'receita' : 'despesa')
+        transaction_type:
+          data.transaction_type ||
+          (data.type === 'income' ? 'receita' : 'despesa')
       }
-      
+
       const response = await api.post('/transactions/', backendData)
       const normalized = normalizeTransaction(response.data)
-      setTransactions((prev) => [normalized, ...prev])
+      setTransactions(prev => [normalized, ...prev])
       return { success: true, data: normalized }
     } catch (err) {
-      const errorMessage = err.response?.data?.amount?.[0] || 
-                          err.response?.data?.category?.[0] || 
-                          err.response?.data?.detail || 
-                          'Failed to create transaction.'
+      const errorMessage =
+        err.response?.data?.amount?.[0] ||
+        err.response?.data?.category?.[0] ||
+        err.response?.data?.detail ||
+        'Failed to create transaction.'
       setError(errorMessage)
       return { success: false, error: errorMessage }
     } finally {
@@ -97,22 +102,25 @@ export function TransactionProvider({ children }) {
       // Just ensure it's in the correct backend format
       const backendData = {
         ...data,
-        transaction_type: data.transaction_type || (data.type === 'income' ? 'receita' : 'despesa')
+        transaction_type:
+          data.transaction_type ||
+          (data.type === 'income' ? 'receita' : 'despesa')
       }
-      
+
       const response = await api.put(`/transactions/${id}/`, backendData)
       const normalized = normalizeTransaction(response.data)
-      setTransactions((prev) =>
-        prev.map((transaction) =>
+      setTransactions(prev =>
+        prev.map(transaction =>
           transaction.id === id ? normalized : transaction
         )
       )
       return { success: true, data: normalized }
     } catch (err) {
-      const errorMessage = err.response?.data?.amount?.[0] || 
-                          err.response?.data?.category?.[0] || 
-                          err.response?.data?.detail || 
-                          'Failed to update transaction.'
+      const errorMessage =
+        err.response?.data?.amount?.[0] ||
+        err.response?.data?.category?.[0] ||
+        err.response?.data?.detail ||
+        'Failed to update transaction.'
       setError(errorMessage)
       return { success: false, error: errorMessage }
     } finally {
@@ -120,18 +128,16 @@ export function TransactionProvider({ children }) {
     }
   }
 
-  const deleteTransaction = async (id) => {
+  const deleteTransaction = async id => {
     setLoading(true)
     setError(null)
     try {
       await api.delete(`/transactions/${id}/`)
-      setTransactions((prev) =>
-        prev.filter((transaction) => transaction.id !== id)
-      )
+      setTransactions(prev => prev.filter(transaction => transaction.id !== id))
       return { success: true }
     } catch (err) {
-      const errorMessage = err.response?.data?.detail || 
-                          'Failed to delete transaction.'
+      const errorMessage =
+        err.response?.data?.detail || 'Failed to delete transaction.'
       setError(errorMessage)
       return { success: false, error: errorMessage }
     } finally {
@@ -139,7 +145,7 @@ export function TransactionProvider({ children }) {
     }
   }
 
-  const fetchReport = async (month) => {
+  const fetchReport = async month => {
     setLoading(true)
     setError(null)
     try {
@@ -147,8 +153,8 @@ export function TransactionProvider({ children }) {
       setReport(response.data)
       return { success: true, data: response.data }
     } catch (err) {
-      const errorMessage = err.response?.data?.detail || 
-                          'Failed to fetch report.'
+      const errorMessage =
+        err.response?.data?.detail || 'Failed to fetch report.'
       setError(errorMessage)
       return { success: false, error: errorMessage }
     } finally {
@@ -156,14 +162,14 @@ export function TransactionProvider({ children }) {
     }
   }
 
-  const exportCSV = async (month) => {
+  const exportCSV = async month => {
     setLoading(true)
     setError(null)
     try {
       const response = await api.get(`/transactions/export/?month=${month}`, {
-        responseType: 'blob',
+        responseType: 'blob'
       })
-      
+
       const url = window.URL.createObjectURL(new Blob([response.data]))
       const link = document.createElement('a')
       link.href = url
@@ -172,11 +178,10 @@ export function TransactionProvider({ children }) {
       link.click()
       link.remove()
       window.URL.revokeObjectURL(url)
-      
+
       return { success: true }
     } catch (err) {
-      const errorMessage = err.response?.data?.detail || 
-                          'Failed to export CSV.'
+      const errorMessage = err.response?.data?.detail || 'Failed to export CSV.'
       setError(errorMessage)
       return { success: false, error: errorMessage }
     } finally {
@@ -196,7 +201,7 @@ export function TransactionProvider({ children }) {
     updateTransaction,
     deleteTransaction,
     fetchReport,
-    exportCSV,
+    exportCSV
   }
 
   return (

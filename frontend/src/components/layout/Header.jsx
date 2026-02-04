@@ -1,12 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
+import { toast } from 'react-hot-toast'
 
 export default function Header() {
-  const { user, isAuthenticated } = useAuth()
+  const { user, isAuthenticated, logout } = useAuth()
   const navigate = useNavigate()
 
   const handleLogout = () => {
-    localStorage.removeItem('access_token')
+    logout()
+    toast.success('Logged out successfully')
     navigate('/login')
   }
 
@@ -19,21 +21,21 @@ export default function Header() {
           <div className="flex items-center space-x-8">
             <h1 className="text-2xl font-bold text-indigo-600">FinTrack</h1>
             <nav className="hidden md:flex space-x-4">
-              <Link 
-                to="/dashboard" 
+              <Link
+                to="/dashboard"
                 className="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition"
               >
                 Dashboard
               </Link>
-              <Link 
-                to="/transactions" 
+              <Link
+                to="/transactions"
                 className="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition"
               >
                 Transactions
               </Link>
             </nav>
           </div>
-          
+
           <div className="flex items-center space-x-4">
             <span className="text-sm text-gray-600 hidden sm:block">
               {user?.email || 'user@example.com'}

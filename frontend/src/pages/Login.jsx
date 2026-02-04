@@ -1,16 +1,15 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
-import api from '../services/api'
 import { useAuth } from '../contexts/AuthContext'
 
 export default function Login() {
   const navigate = useNavigate()
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, login } = useAuth()
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
-    password: '',
+    password: ''
   })
   const [errors, setErrors] = useState({})
 
@@ -37,22 +36,22 @@ export default function Login() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
-      [name]: value,
+      [name]: value
     }))
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors((prev) => ({
+      setErrors(prev => ({
         ...prev,
-        [name]: '',
+        [name]: ''
       }))
     }
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault()
 
     if (!validateForm()) {
@@ -62,31 +61,17 @@ export default function Login() {
     setLoading(true)
 
     try {
-      const response = await api.post('/auth/login/', formData)
-      const { access, refresh } = response.data
+      const result = await login(formData.email, formData.password)
 
-      localStorage.setItem('access_token', access)
-      localStorage.setItem('refresh_token', refresh)
-
-      toast.success('Login successful!')
-      navigate('/dashboard')
+      if (result.success) {
+        toast.success('Login successful!')
+        navigate('/dashboard')
+      } else {
+        toast.error(result.error)
+      }
     } catch (error) {
       console.error('Login error:', error)
-
-      if (error.response?.data) {
-        const errorData = error.response.data
-        if (errorData.detail) {
-          toast.error(errorData.detail)
-        } else if (errorData.email) {
-          toast.error(errorData.email[0])
-        } else if (errorData.password) {
-          toast.error(errorData.password[0])
-        } else {
-          toast.error('Login failed. Please check your credentials.')
-        }
-      } else {
-        toast.error('Network error. Please try again.')
-      }
+      toast.error('An unexpected error occurred. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -113,7 +98,9 @@ export default function Login() {
             </svg>
           </div>
           <h2 className="text-3xl font-bold text-gray-900">Welcome back</h2>
-          <p className="mt-2 text-gray-600">Sign in to your account to continue</p>
+          <p className="mt-2 text-gray-600">
+            Sign in to your account to continue
+          </p>
         </div>
 
         {/* Form Card */}
@@ -121,7 +108,10 @@ export default function Login() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Email address
               </label>
               <input
@@ -143,7 +133,10 @@ export default function Login() {
 
             {/* Password Field */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Password
               </label>
               <input
