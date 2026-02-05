@@ -9,8 +9,15 @@ Uma aplicação fullstack de gestão financeira pessoal desenvolvida com metodol
 ## 🎨 Screenshots
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/45e052f6-0f13-4b01-9d7d-13a5bdd6d7fd" alt="Dashboard" width="45%" />
-  <img src="https://github.com/user-attachments/assets/0e75fc04-5dd9-4f72-91cf-98daca4f7199" alt="Transactions" width="45%" />
+  <div style="display: inline-block; margin: 0 10px; vertical-align: top;">
+    <h4>Dashboard</h4>
+    <img src="https://github.com" alt="Dashboard Screenshot" width="400px" style="border: 1px solid #ddd; border-radius: 5px;" />
+  </div>
+
+  <div style="display: inline-block; margin: 0 10px; vertical-align: top;">
+    <h4>Transactions</h4>
+    <img src="https://github.com" alt="Transactions Screenshot" width="400px" style="border: 1px solid #ddd; border-radius: 5px;" />
+  </div>
 </div>
 
 ## 💻 Tecnologias!
