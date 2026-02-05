@@ -104,14 +104,14 @@ docker-compose down
 
 - https://github.com/user-attachments/assets/05502edf-c1b0-4b49-b282-e56bbf952865
 
-
-
 ### 2. **Gerenciamento de Transações**
 
 - Criar receitas e despesas
 - Editar transações existentes
 - Deletar transações
 - Filtrar por período, categoria e tipo
+
+- https://github.com/user-attachments/assets/5d4b3b32-723a-4a07-81f1-4cc53b2c77e7
 
 ### 3. **Análises e Relatórios**
 
