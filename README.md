@@ -27,15 +27,11 @@ Uma aplicação fullstack de gestão financeira pessoal desenvolvida com metodol
 - **Vite** - Build tool
 - **Tailwind CSS** - Estilizacao
 - **Chart.js** - Graficos
-- **Axios** - Cliente HTTP
 - **React Router** - Roteamento
 
 ### DevOps
 
 - **Docker Compose** - Desenvolvimento local
-- **Render** - Deploy backend
-- **Vercel** - Deploy frontend
-- **Supabase** - Banco PostgreSQL (producao)
 
 ## Funcionalidades
 
@@ -63,7 +59,7 @@ Uma aplicação fullstack de gestão financeira pessoal desenvolvida com metodol
 
 ## 📁 Estrutura do Projeto
 
-Para documentação detalhada, veja [DOCUMENTACAO_ESTRUTURA.md](./DOCUMENTACAO_ESTRUTURA.md).
+Para documentação detalhada, veja [DOCUMENTACAO_ESTRUTURA.md](./DOCUMENTACAO.md).
 
 ````
 financial_dashboard/
