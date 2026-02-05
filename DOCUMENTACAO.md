@@ -129,6 +129,8 @@ docker-compose down
 - Componentes reutilizáveis
 - Navegação intuitiva
 
+- https://github.com/user-attachments/assets/e7a30154-2c33-4bde-9708-49a4a0324828
+
 ---
 
 ## 🔑 Credenciais de Desenvolvimento
