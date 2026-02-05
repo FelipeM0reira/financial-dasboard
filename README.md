@@ -4,12 +4,7 @@ Uma aplicação fullstack de gestão financeira pessoal desenvolvida com metodol
 
 > 📚 **Documentação completa disponível em:**
 >
-> - [📖 Estrutura Completa](./DOCUMENTACAO_ESTRUTURA.md)
-> - [⚡ Guia Rápido](./GUIA_RAPIDO.md)
-> - [🔧 Backend](./backend/README.md)
-> - [⚛️ Frontend](./frontend/README.md)
-> - [🏗️ Arquitetura](./ARQUITETURA.md)
-> - [✅ Checklist](./CHECKLIST_DESENVOLVIMENTO.md)
+> - [📖 Estrutura Completa](./DOCUMENTACAO.md)
 
 ## 🎨 Screenshots
 
