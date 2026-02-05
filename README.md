@@ -204,41 +204,7 @@ pytest -v
 
 - `?month=2024-01` - Filtrar por mes
 - `?category=alimentacao` - Filtrar por categoria
-- `?transaction_type=despesa` - Filtrar por tipo
-
-## Deploy
-
-### Backend (Render)
-
-1. Crie um projeto no [Render](https://render.com)
-2. Conecte seu repositorio GitHub
-3. Configure as variaveis de ambiente:
-   - `SECRET_KEY` - Chave secreta Django
-   - `DATABASE_URL` - URL do Supabase PostgreSQL
-   - `CORS_ALLOWED_ORIGINS` - URL do frontend Vercel
-   - `DEBUG=False`
-   - `ALLOWED_HOSTS=.onrender.com`
-
-4. Deploy automatico a cada push na branch main
-
-### Frontend (Vercel)
-
-1. Crie um projeto no [Vercel](https://vercel.com)
-2. Conecte seu repositorio GitHub
-3. Configure a variavel de ambiente:
-   - `VITE_API_URL` - URL do backend Render
-
-4. Deploy automatico a cada push
-
-### Banco de Dados (Supabase)
-
-1. Crie um projeto no [Supabase](https://supabase.com)
-2. Copie a connection string do PostgreSQL
-3. Configure no Render como `DATABASE_URL`
-
-## Limitacoes do Free Tier
-
-> **Importante**: O plano gratuito do Render entra em "sleep" apos 15 minutos de inatividade. A primeira requisicao apos isso pode levar ~30 segundos (cold start). Em producao real, recomenda-se o plano pago para aplicacoes financeiras.
+- `?transaction_type=despesa` - Filtrar por tipoS
 
 ## Seguranca
 
@@ -262,18 +228,9 @@ transactions/tests/test_views.py         - 17 testes
 transactions/tests/test_reports.py       - 11 testes
 ```
 
-## Proximos Passos
-
-- [ ] Two-Factor Authentication (2FA)
-- [ ] Graficos de evolucao mensal
-- [ ] Metas de economia
-- [ ] Notificacoes de limites
-- [ ] App mobile com React Native
-- [ ] Integracao com Open Banking
-
 ## Autor
 
-Desenvolvido por **Joao Gabriel** como projeto de portfolio para demonstrar habilidades fullstack com React + Django.
+Desenvolvido por **Joao Felipe** como projeto de portfolio para demonstrar habilidades fullstack com React + Django.
 
 ## Licenca
 
