@@ -8,7 +8,7 @@ Uma aplicação fullstack de gestão financeira pessoal desenvolvida com metodol
 
 ## 🎨 Screenshots
 
-<div>
+<div align="center">
   <div style="display: inline-block; margin: 0 5px; vertical-align: top;">
     <h4>Dashboard</h4>
     <img src="https://github.com/user-attachments/assets/2aa77685-75c2-4580-97b1-6324a0a24fb7" alt="Dashboard Screenshot" width="400px" style="border: 1px solid #ddd; border-radius: 5px;" />
@@ -51,6 +51,8 @@ Uma aplicação fullstack de gestão financeira pessoal desenvolvida com metodol
 - Recuperacao de senha via email
 - Protecao de rotas
 
+- https://github.com/user-attachments/assets/ae7823a8-3f43-4b00-a382-59d40e81a7bc
+
 ### Gestao de Transacoes
 
 - CRUD completo (Criar, Listar, Editar, Deletar)
@@ -59,12 +61,16 @@ Uma aplicação fullstack de gestão financeira pessoal desenvolvida com metodol
 - Filtros por mes, categoria e tipo
 - Paginacao
 
+- https://github.com/user-attachments/assets/0a9caeee-12c2-4672-a3e2-1024d0670fdc
+
 ### Relatorios e Analises
 
 - Dashboard com resumo mensal
 - Graficos de despesas por categoria
 - Calculo de saldo (receitas - despesas)
 - Export para CSV
+
+- https://github.com/user-attachments/assets/3996890c-98cb-47c0-b0bc-febe16442b29
 
 ## 📁 Estrutura do Projeto
 
@@ -209,7 +215,7 @@ pytest -v
 
 - `?month=2024-01` - Filtrar por mes
 - `?category=alimentacao` - Filtrar por categoria
-- `?transaction_type=despesa` - Filtrar por tipoS
+- `?transaction_type=despesa` - Filtrar por tipos
 
 ## Seguranca
 
@@ -233,10 +239,10 @@ transactions/tests/test_views.py         - 17 testes
 transactions/tests/test_reports.py       - 11 testes
 ```
 
-## Autor
+##👨‍💻 Autor
 
-Desenvolvido por **Joao Felipe** como projeto de portfolio para demonstrar habilidades fullstack com React + Django.
+ [<img src="https://avatars.githubusercontent.com/u/104744113?v=4" width=115><br><sub>Felipe Moreira</sub>](https://github.com/FelipeM0reira) 
 
 ## Licenca
 
-Este projeto esta sob a licenca MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+MIT.
