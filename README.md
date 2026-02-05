@@ -7,10 +7,11 @@ Uma aplicação fullstack de gestão financeira pessoal desenvolvida com metodol
 > - [📖 Estrutura Completa](./DOCUMENTACAO.md)
 
 ## 🎨 Screenshots
-![Dashboard]<img width="1267" height="1297" alt="Captura de tela 2026-02-05 125331" src="https://github.com/user-attachments/assets/45e052f6-0f13-4b01-9d7d-13a5bdd6d7fd" />
 
-![Transactions]<img width="1606" height="1002" alt="Captura de tela 2026-02-05 125346" src="https://github.com/user-attachments/assets/0e75fc04-5dd9-4f72-91cf-98daca4f7199" />
-
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/45e052f6-0f13-4b01-9d7d-13a5bdd6d7fd" alt="Dashboard" width="45%" />
+  <img src="https://github.com/user-attachments/assets/0e75fc04-5dd9-4f72-91cf-98daca4f7199" alt="Transactions" width="45%" />
+</div>
 
 ## 💻 Tecnologias!
 
