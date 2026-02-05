@@ -310,18 +310,9 @@ npm install
 npm test
 ```
 
----
-
-## 📝 Correções Recentes (04/02/2026)
-
-1. **Login Automático**: Refatorado Login.jsx para usar AuthContext, permitindo redirecionamento automático após login
-2. **Monthly Trend**: Implementado gráfico de barras duplas mostrando receitas vs despesas dos últimos 6 meses
-
----
-
 ## 🤝 Contribuindo
 
-Este é um projeto de portfólio. Sugestões de melhorias são bem-vindas.
+Este é um projeto pessoal e para uso no meu portfólio. Sugestões de melhorias são bem-vindas.
 
 ---
 
