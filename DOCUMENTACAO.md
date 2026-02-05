@@ -102,6 +102,10 @@ docker-compose down
 - Recuperação de senha por email
 - Reset de senha via link
 
+- https://github.com/user-attachments/assets/05502edf-c1b0-4b49-b282-e56bbf952865
+
+
+
 ### 2. **Gerenciamento de Transações**
 
 - Criar receitas e despesas
