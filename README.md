@@ -59,7 +59,7 @@ Uma aplicação fullstack de gestão financeira pessoal desenvolvida com metodol
 
 ## 📁 Estrutura do Projeto
 
-Para documentação detalhada, veja [DOCUMENTACAO_ESTRUTURA.md](./DOCUMENTACAO.md).
+Para documentação detalhada, veja [DOCUMENTACAO.md](./DOCUMENTACAO.md).
 
 ````
 financial_dashboard/
@@ -126,7 +126,7 @@ docker-compose up --build
 # Admin:    http://localhost:8000/admin
 ````
 
-📖 **Para guia mais detalhado, veja [GUIA_RAPIDO.md](./GUIA_RAPIDO.md)**
+📖 **Para guia mais detalhado, veja [DOCUMENTACAO.md](./DOCUMENTACAO.md)**
 
 ### Rodar Testes
 
