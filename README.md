@@ -18,7 +18,38 @@ Uma aplicação fullstack de gestão financeira pessoal desenvolvida com metodol
     <h4>Transactions</h4>
     <img src="https://github.com/user-attachments/assets/ecaf0f6f-bab4-4162-b7d9-62c10b232a67" alt="Transactions Screenshot" width="400px" style="border: 1px solid #ddd; border-radius: 5px;" />
   </div>
-</div>
+</div> 
+
+
+## 🛠️ Funcionalidades
+
+### Autenticação Segura
+
+- Registro com validacao de senha forte
+- Login com JWT (Access + Refresh tokens)
+- Recuperacao de senha via email
+- Protecao de rotas
+
+- https://github.com/user-attachments/assets/ae7823a8-3f43-4b00-a382-59d40e81a7bc
+
+### Gestão de Transações
+
+- CRUD completo (Criar, Listar, Editar, Deletar)
+- Categorias: Alimentacao, Transporte, Moradia, Saude, Lazer, Educacao, Salario, Investimentos, Outros
+- Tipos: Receita e Despesa
+- Filtros por mes, categoria e tipo
+- Paginacao
+
+- https://github.com/user-attachments/assets/0a9caeee-12c2-4672-a3e2-1024d0670fdc
+
+### Relatorios e Analises
+
+- Dashboard com resumo mensal
+- Graficos de despesas por categoria
+- Calculo de saldo (receitas - despesas)
+- Export para CSV
+
+- https://github.com/user-attachments/assets/3996890c-98cb-47c0-b0bc-febe16442b29
 
 ## 💻 Tecnologias!
 
@@ -41,36 +72,6 @@ Uma aplicação fullstack de gestão financeira pessoal desenvolvida com metodol
 ### DevOps
 
 - **Docker Compose** - Desenvolvimento local
-
-## Funcionalidades
-
-### Autenticacao Segura
-
-- Registro com validacao de senha forte
-- Login com JWT (Access + Refresh tokens)
-- Recuperacao de senha via email
-- Protecao de rotas
-
-- https://github.com/user-attachments/assets/ae7823a8-3f43-4b00-a382-59d40e81a7bc
-
-### Gestao de Transacoes
-
-- CRUD completo (Criar, Listar, Editar, Deletar)
-- Categorias: Alimentacao, Transporte, Moradia, Saude, Lazer, Educacao, Salario, Investimentos, Outros
-- Tipos: Receita e Despesa
-- Filtros por mes, categoria e tipo
-- Paginacao
-
-- https://github.com/user-attachments/assets/0a9caeee-12c2-4672-a3e2-1024d0670fdc
-
-### Relatorios e Analises
-
-- Dashboard com resumo mensal
-- Graficos de despesas por categoria
-- Calculo de saldo (receitas - despesas)
-- Export para CSV
-
-- https://github.com/user-attachments/assets/3996890c-98cb-47c0-b0bc-febe16442b29
 
 ## 📁 Estrutura do Projeto
 
