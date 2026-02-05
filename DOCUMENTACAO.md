@@ -121,6 +121,8 @@ docker-compose down
 - **Transações Recentes**: Lista das últimas 5 transações
 - **Exportação CSV**: Baixar dados das transações
 
+- https://github.com/user-attachments/assets/aa3aff64-bf1e-464b-8541-570801d3ba90
+
 ### 4. **Interface Responsiva**
 
 - Layout adaptável para mobile, tablet e desktop
