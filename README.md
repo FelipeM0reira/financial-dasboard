@@ -25,28 +25,28 @@ Uma aplicação fullstack de gestão financeira pessoal desenvolvida com metodol
 
 ### Autenticação Segura
 
-- Registro com validacao de senha forte
+- Registro com validação de senha forte
 - Login com JWT (Access + Refresh tokens)
-- Recuperacao de senha via email
-- Protecao de rotas
+- Recuperação de senha via email
+- Proteção de rotas
 
 - https://github.com/user-attachments/assets/ae7823a8-3f43-4b00-a382-59d40e81a7bc
 
 ### Gestão de Transações
 
 - CRUD completo (Criar, Listar, Editar, Deletar)
-- Categorias: Alimentacao, Transporte, Moradia, Saude, Lazer, Educacao, Salario, Investimentos, Outros
+- Categorias: Alimentação, Transporte, Moradia, Saúde, Lazer, Educação, Salário, Investimentos, Outros
 - Tipos: Receita e Despesa
-- Filtros por mes, categoria e tipo
-- Paginacao
+- Filtros por mês, categoria e tipo
+- Paginação
 
 - https://github.com/user-attachments/assets/0a9caeee-12c2-4672-a3e2-1024d0670fdc
 
-### Relatorios e Analises
+### Relatórios e Análises
 
 - Dashboard com resumo mensal
-- Graficos de despesas por categoria
-- Calculo de saldo (receitas - despesas)
+- Gráficos de despesas por categoria
+- Cálculo de saldo (receitas - despesas)
 - Export para CSV
 
 - https://github.com/user-attachments/assets/3996890c-98cb-47c0-b0bc-febe16442b29
@@ -57,7 +57,7 @@ Uma aplicação fullstack de gestão financeira pessoal desenvolvida com metodol
 
 - **Django 4.2** - Framework web Python
 - **Django REST Framework** - API REST
-- **SimpleJWT** - Autenticacao JWT
+- **SimpleJWT** - Autenticação JWT
 - **PostgreSQL** - Banco de dados
 - **pytest** - Testes automatizados (65 testes)
 
@@ -65,8 +65,8 @@ Uma aplicação fullstack de gestão financeira pessoal desenvolvida com metodol
 
 - **React 18** - Biblioteca UI
 - **Vite** - Build tool
-- **Tailwind CSS** - Estilizacao
-- **Chart.js** - Graficos
+- **Tailwind CSS** - Estilização
+- **Chart.js** - Gráficos
 - **React Router** - Roteamento
 
 ### DevOps
@@ -155,11 +155,11 @@ cd backend && python -m venv venv
 source venv/bin/activate
 ```
 
-2. **Configure as variaveis de ambiente**
+2. **Configure as variáveis de ambiente**
 
 ```bash
 cp .env.example .env
-# Edite o arquivo .env se necessario
+# Edite o arquivo .env se necessário
 ```
 
 3. **Suba os containers**
@@ -190,7 +190,7 @@ pytest -v
 
 ## API Endpoints
 
-### Autenticacao
+### Autenticação
 
 | Metodo | Endpoint                            | Descricao                |
 | ------ | ----------------------------------- | ------------------------ |
@@ -212,20 +212,20 @@ pytest -v
 | GET    | `/api/transactions/report/` | Relatorio mensal     |
 | GET    | `/api/transactions/export/` | Exportar CSV         |
 
-### Filtros Disponiveis
+### Filtros Disponíveis
 
-- `?month=2024-01` - Filtrar por mes
+- `?month=2024-01` - Filtrar por mês
 - `?category=alimentacao` - Filtrar por categoria
 - `?transaction_type=despesa` - Filtrar por tipos
 
 ## Seguranca
 
 - Senhas hasheadas com PBKDF2
-- Tokens JWT com expiracao curta (5 min access, 24h refresh)
-- Validacao de senha forte (8+ caracteres, maiuscula, minuscula, numero, especial)
-- HTTPS obrigatorio em producao
-- CORS configurado para dominio especifico
-- Valores financeiros com DecimalField (precisao de 2 casas)
+- Tokens JWT com expiração curta (5 min access, 24h refresh)
+- Validação de senha forte (8+ caracteres, maiúscula, minúscula, número, especial)
+- HTTPS obrigatório em produção
+- CORS configurado para domínio específico
+- Valores financeiros com DecimalField (precisão de 2 casas)
 
 ## Cobertura de Testes
 
